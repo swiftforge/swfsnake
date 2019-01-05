@@ -9,6 +9,10 @@ const {
   poweredByHandler
 } = require('./handlers.js')
 
+const boardState = require('./swf_modules/boardState')
+const snake = require('./src/snake')
+const motor = require('./src/motor')
+
 // For deployment to Heroku, the port needs to be set using ENV, so
 // we check for the port number in process.env
 app.set('port', (process.env.PORT || 9001))
@@ -19,30 +23,26 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(poweredByHandler)
 
-// --- SNAKE LOGIC GOES BELOW THIS LINE ---
-
-// Handle POST request to '/start'
 app.post('/start', (request, response) => {
   // NOTE: Do something here to start the game
 
   // Response data
-  const data = {
-    color: '#DFFF00',
-  }
+  let gameState = req.body
+  const swfSnake = snake.swfIfFy(gameState)
 
-  return response.json(data)
+  return response.json(swfSnake)
 })
 
-// Handle POST request to '/move'
 app.post('/move', (request, response) => {
   // NOTE: Do something here to generate your move
 
   // Response data
-  const data = {
-    move: 'up', // one of: ['up','down','left','right']
-  }
+  let gameState = boardState.visualize(req.body,{
+    
+  })
+  const move = motor.getMove(gameState)
 
-  return response.json(data)
+  return response.json(move)
 })
 
 app.post('/end', (request, response) => {
@@ -54,8 +54,6 @@ app.post('/ping', (request, response) => {
   // Used for checking if this snake is still alive.
   return response.json({});
 })
-
-// --- SNAKE LOGIC GOES ABOVE THIS LINE ---
 
 app.use('*', fallbackHandler)
 app.use(notFoundHandler)

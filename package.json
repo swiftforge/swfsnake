@@ -1,10 +1,10 @@
 {
-  "name": "battlesnake-node",
-  "description": "A simple BattleSnake AI written in Javascript for NodeJS",
+  "name": "swfsnake",
+  "description": "A blindingly swf battlesnake AI",
   "version": "0.0.0",
   "private": true,
-  "author": "Sendwithus",
-  "repository": "https://github.com/sendwithus/battlesnake-node",
+  "author": "swfsoft",
+  "repository": "https://github.com/swiftforge/swfsnake.git",
   "licenses": [
     {
       "type": "WTFPL",
@@ -18,6 +18,8 @@
     "morgan": "^1.9.1"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
     "nodemon": "^1.18.9"
   },
   "main": "index.js",
@@ -25,6 +27,7 @@
     "node": ">=8.x"
   },
   "scripts": {
-    "start": "cross-env PORT=5000 nodemon index.js"
+    "start": "cross-env PORT=5000 nodemon index.js",
+    "test": "mocha"
   }
 }
