@@ -1,4 +1,4 @@
-const assert = require('chai')
+const assert = require('chai').assert
 const gameState = require('./dummy-gameState')
 const snake = require('../src/snake')
 

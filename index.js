@@ -23,36 +23,35 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(poweredByHandler)
 
-app.post('/start', (request, response) => {
-  // NOTE: Do something here to start the game
-
-  // Response data
+app.post('/start', (req, res) => {
+  console.log('GAME START')
   let gameState = req.body
   const swfSnake = snake.swfIfFy(gameState)
 
-  return response.json(swfSnake)
+  return res.json(swfSnake)
 })
 
-app.post('/move', (request, response) => {
-  // NOTE: Do something here to generate your move
-
-  // Response data
+app.post('/move', (req, res) => {
+  console.log('GAME MOVE')
   let gameState = boardState.visualize(req.body,{
-    
+    addBoard:true,
+    addPoints: true
   })
   const move = motor.getMove(gameState)
 
-  return response.json(move)
+  return res.json(move)
 })
 
-app.post('/end', (request, response) => {
+app.post('/end', (req, res) => {
+  console.log('GAME END')
   // NOTE: Any cleanup when a game is complete.
-  return response.json({})
+  return res.json({})
 })
 
-app.post('/ping', (request, response) => {
+app.post('/ping', (req, res) => {
+  console.log('PING')
   // Used for checking if this snake is still alive.
-  return response.json({});
+  return res.json({});
 })
 
 app.use('*', fallbackHandler)

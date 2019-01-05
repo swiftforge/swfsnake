@@ -1,6 +1,7 @@
-const assert = require('chai')
-const motor = require('../src/motor')
+const assert = require('chai').assert
 const gameState = require('./dummy-gameState')
+const motor = require('../src/motor')
+
 
 describe('motor.getMove', () => {
   it('returns a valid move object', () => {

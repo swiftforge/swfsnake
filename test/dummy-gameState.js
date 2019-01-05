@@ -1,5 +1,4 @@
-module.exports = () => {
-  return {
+module.exports = {
     game: { id: '622216f2-4dc4-4360-ae41-0bbd91b65ed8' },
     turn: 0,
     board:
@@ -14,7 +13,7 @@ module.exports = () => {
         [
           {
             id: 'db20a95d-454d-46ec-a200-90bc368b994f',
-            name: 'test-one',
+            name: 'TEST-YOU',
             health: 100,
             body: [
               { x: 1, y: 0 },
@@ -25,7 +24,7 @@ module.exports = () => {
           },
           {
             id: '9046af6e-28fc-4ebb-aa0d-3085d9dc896e',
-            name: 'test-two',
+            name: 'TEST-THEM',
             health: 100,
             body: [
               { x: 3, y: 2 }, 
@@ -38,7 +37,7 @@ module.exports = () => {
     you:
     {
       id: 'db20a95d-454d-46ec-a200-90bc368b994f',
-      name: 'test-one',
+      name: 'TEST-YOU',
       health: 100,
       body: [
         { x: 1, y: 0 },
@@ -63,4 +62,3 @@ module.exports = () => {
     [ 0, 0, 0, 0, 0 ],
     [ 0, 0, 0, 0, 0 ] ]
   }
-}
