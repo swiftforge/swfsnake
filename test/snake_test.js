@@ -1,5 +1,5 @@
 const assert = require('chai').assert
-const gameState = require('./dummy-gameState')
+const gameState = require('./dummy-gameState').formatted.simple
 const snake = require('../src/snake')
 
 describe('snake.swfIfFy', () => {

@@ -5,7 +5,7 @@ const motor = require('../src/motor')
 
 describe('motor.getMove', () => {
   it('returns a valid move object', () => {
-    let nextMove = motor.getMove(gameState)
+    let nextMove = motor.getMove(gameState.formatted.simple)
     assert.isObject(nextMove, "move is a valid object")
     assert.isString(nextMove.move, "move is correctly formatted")
   })
