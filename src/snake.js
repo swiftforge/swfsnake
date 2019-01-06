@@ -11,9 +11,12 @@ class Snake {
       let name = gameState.you.name
       let color = '#029cfc' //blue
 
-      if(name === "swf") color = '#029cfc' //blue
-      if(name === "jon") color = '#fd8400' //jon
-      if(name === "kiyota") color = '#00c08f' //kiyota
+      if(name === "blue") color = '#029cfc' //blue
+      if(name === "orange") color = '#fd8400' //orange
+      if(name === "pink") color = '#ff00d4' //pink
+      if(name === "vomit") color = '#7D7749' //vomit color
+      if(name === "purple") color = '#8a30af' //purple
+      if(name === "teal") color = '#00c08f' //teal
 
       return {color}
     })()
