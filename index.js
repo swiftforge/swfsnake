@@ -10,8 +10,8 @@ const {
 } = require('./handlers.js')
 
 const boardState = require('./swf_modules/boardState')
-const snake = require('./src/snake')
-const motor = require('./src/motor')
+const Snake = require('./src/Snake')
+const drive = require('./src/drive')
 
 // For deployment to Heroku, the port needs to be set using ENV, so
 // we check for the port number in process.env
@@ -26,7 +26,8 @@ app.use(poweredByHandler)
 app.post('/start', (req, res) => {
   console.log('GAME START')
   let gameState = req.body
-  const swfSnake = snake.swfIfFy(gameState)
+  const snake = new Snake(gameState)
+  const swfSnake = snake.hatchling
 
   return res.json(swfSnake)
 })
@@ -37,9 +38,11 @@ app.post('/move', (req, res) => {
     addBoard:true,
     addPoints: true
   })
-  const move = motor.getMove(gameState)
+  const snake = new Snake(gameState)
 
-  return res.json(move)
+  const direction = drive.getDir(snake, gameState)
+
+  return res.json(direction)
 })
 
 app.post('/end', (req, res) => {

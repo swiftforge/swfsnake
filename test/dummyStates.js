@@ -1,10 +1,19 @@
-const gameState = module.exports
+const dummyStates = module.exports
 
-const formatted = {}
-gameState.formatted = formatted
+const game = {}
+const Snake = {}
+const path = {}
+dummyStates.game = game
+dummyStates.Snake = Snake
+dummyStates.path = path
+
+
+/**
+ * GAME
+ */
 
 //Simple game state for basic tests
-formatted.simple = {
+game.simple = {
   game: { id: '622216f2-4dc4-4360-ae41-0bbd91b65ed8' },
   turn: 0,
   board: {
@@ -52,7 +61,7 @@ formatted.simple = {
 }
 
 //first of a sequence of moves for testing
-formatted.moveOne_snakesTwo = {
+game.moveOne_snakesTwo = {
   game: { id: '622216f2-4dc4-4360-ae41-0bbd91b65ed8' },
   turn: 3,
   board: {
@@ -98,8 +107,8 @@ formatted.moveOne_snakesTwo = {
     ]
   },
   parsedBoardPoints: [ 
-    { x: 0, y: 0, type: 'food', meal: true },
-    { x: 3, y: 1, type: 'food', meal: true },
+    { x: 0, y: 0, type: 'food', meal: true},
+    { x: 3, y: 1, type: 'food', meal: true},
     { x: 1, y: 0, type: 'you', isCollision: false, part: 'head' },
     { x: 2, y: 0, type: 'you', isCollision: true, part: 'neck' },
     { x: 3, y: 0, type: 'you', isCollision: true, },
@@ -115,3 +124,48 @@ formatted.moveOne_snakesTwo = {
       [0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0]]
 }
+
+// END OF GAME ----
+
+/**
+ * SNAKE
+ */
+
+//snake.head
+Snake.head = { x: 1, y: 0, type: 'you', isCollision: false, part: 'head' }
+Snake.neck = { x: 2, y: 0, type: 'you', isCollision: true, part: 'neck', dir: "right", "spaces": 1}
+
+// Snake.getOpenMoves
+Snake.getOpenMoves = [
+  {
+    dir: "left"
+  },
+  {
+    dir: "down"
+  }
+]
+
+
+ // END OF SNAKE ----
+
+ /**
+  * PATH
+  */
+
+path.clearPath = { x: 2, y: 2, type: 'snake', isCollision: true }
+
+path.isImmediateCollision = [
+  { x: 2, y: 0, type: 'you', isCollision: true, dir:"right", spaces: 1},
+  { x: 2, y: 2, type: 'snake', isCollision: true, dir:"right", spaces:3 },
+  { x: 2, y: 2, type: 'snake', isCollision: true, dir:"down", spaces:3 },
+  { x: 1, y: 2, type: 'snake', isCollision: true, part: 'tail', dir:"down", spaces:2} 
+]
+
+path.isTrap = [
+  { x: 1, y: 1, type: 'snake', isCollision: true},
+  { x: 1, y: 2, type: 'snake', isCollision: true},
+  { x: 1, y: 3, type: 'snake', isCollision: true},
+  { x: 0, y: 3, type: 'snake', isCollision: true}
+]
+
+  //END OF PATH
