@@ -25,9 +25,13 @@ app.use(poweredByHandler)
 
 app.post('/start', (req, res) => {
   console.log('GAME START')
-  let gameState = req.body
+  let gameState = boardState.visualize(req.body,{
+    addBoard:true,
+    addPoints: true
+  })
   const snake = new Snake(gameState)
   const swfSnake = snake.hatchling
+  console.log('Our snake: ', swfSnake)
 
   return res.json(swfSnake)
 })
@@ -40,7 +44,7 @@ app.post('/move', (req, res) => {
   })
   const snake = new Snake(gameState)
 
-  const direction = drive.getDir(snake, gameState)
+  const direction = drive.getDirection(snake, gameState)
 
   return res.json(direction)
 })
