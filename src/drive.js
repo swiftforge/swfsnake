@@ -1,16 +1,20 @@
 const drive = module.exports
 const util = require('util')
 const path = require('./path')
+const score = require('./score')
 
 const randomInt = (max) => {
   if(!max || max === 0) return 0
   return Math.floor(Math.random() * Math.floor(max));
 }
 
+const getRandomDirection = (dirs,snake,width,height) => {
+
+}
+
 //Will output the next move (is probably called from index.js)
 drive.getDirection = (snake, gameState) => {
   try {
-    //console.log('drive.getMove - Snake: ', util.inspect(snake))
     let direction = {}
 
     // console.log('drive.getDirection - beginning with food: ', snake.food)
@@ -51,17 +55,31 @@ drive.getDirection = (snake, gameState) => {
       return a.spaces < b.spaces ? a : b
     })
 
-    if(bestFood && snake.health < (bestFood.spaces + 20)) {
+    const bestScore = score.create(snake, bestMealSnake, width, height).reduce((a,b) => {
+      return a.score > b.score ? a.type : b.type
+    })
+
+    console.log('drive.getDirection - score: ', bestScore)
+
+    if(bestScore === "hungry") {
       console.log('drive.getDirection - going for food: ', bestFood);
       direction.move =  bestFood.dir
-    } else if(bestMealSnake && bestMealSnake.spaces < 3) {
+    } else if(bestScore === "killer") {
       console.log('drive.getDirection - going for a kill: ', bestMealSnake);
       direction.move = bestMealSnake.dir
-    } else if(tailMove && tailMove.dir) {
+    } else if(bestScore === "tail") {
       console.log('drive.getDirection - going with tailMove: ', tailMove);
       direction.move = tailMove.dir
     } else {
-      direction.move = availableDirs[randomInt(availableDirs.length)]
+      let clearDirs = availableDirs.filter((dir) => {
+        return !path.isTrap(snake.head, dir, snake.obs, width, height)
+      })
+
+      if(clearDirs && clearDirs.length > 0) {
+        direction.move = clearDirs[randomInt(clearDirs.length)]
+      } else {
+        direction.move = availableDirs[randomInt(availableDirs.length)]
+      }
       console.log('drive.getDirection - going random available direction: ', direction.move);
     }
 

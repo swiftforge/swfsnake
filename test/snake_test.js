@@ -67,14 +67,3 @@ describe('snake.mealSnakes', () => {
     assert.isTrue(_.every(snake.mealSnakes, {'type': 'snake', 'meal': true}), "some paths are not meal snakes")
   })
 })
-
-// describe('snake.getOpenMoves', () => {
-//   const snake = new Snake(dummyStates.game.moveOne_snakesTwo)
-//   let openMoves = snake.getOpenMoves()
-//   it('returns all available open moves', () => {
-    
-//     assert.isArray(openMoves, "is not an array")
-//     assert.lengthOf(openMoves, 2, "does not have correct number of items")
-//     assert.isTrue(_.some(openMoves,{'dir':'left'}) && _.some(openMoves,{'dir':'down'}), "not returning correct moves")
-//   })
-// })

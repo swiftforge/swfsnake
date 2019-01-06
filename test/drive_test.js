@@ -10,10 +10,4 @@ describe('drive.getDirection', () => {
     assert.isObject(nextMove, "not a valid object")
     assert.isString(nextMove.move, "does not contain a move property")
   })
-
-  it('returns correct move object to get food', () => {
-    const snake = new Snake(dummyStates.game.moveOne_snakesTwo)
-    let nextMove = drive.getDirection(snake, dummyStates.game.moveOne_snakesTwo)
-    assert.propertyVal(nextMove, 'move', 'left', 'food mode not returning correct move')
-  })
 })

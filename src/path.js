@@ -7,7 +7,6 @@ const path = module.exports
  * if returnShorterOnly is set it will return an array with one point (the shorter one) in it
  * example path data: {dir: "up", spaces: 4}
  */
-//TODO: refactor to be leaner?
 path.createPath = (a,b, options) => {
   if(!options) options = {}
   let result = []
@@ -87,11 +86,43 @@ path.createPath = (a,b, options) => {
 }
 
 /**
-* returns boolean of whether any obstacles are between two points
-*/
-path.hasObs = (obsArry, pointA, pointB) => {
+ * returns a direction that is most open
+ */
+path.mostOpenDir = () => {
 
 }
+
+/**
+ * returns augemented direction for intercept of meal snake head if one is within reach
+ */
+/*
+path.getKillDir = (mealSnakes, snakes) => {
+
+  if(!mealSnakes || mealSnakes.length === 0) return {}
+
+  let mealSnake = mealSnakes.filter((meal) => {
+    return meal.spaces === 2
+  })
+
+  if(mealSnake.length === 0) return {} 
+
+  //1. narrow it down to two possible directions for a kill
+  if(mealSnake.length > 2) mealSnake = mealSnake.filter((meal) => {
+    return meal.id === mealSnake[0].id
+  })
+
+  let directions = mealSnake.map((meal) => meal.dir)
+
+  //2. choose one based on position of other snake segments
+
+  let wholeSnake = snakes.reduce((a,b) => {
+    return a.id === mealSnake[0].id ? a : b
+  })
+
+  let snakeHead = wholeSnake.body[0]
+  let snakeNeck = wholeSnake.body[1]
+}
+*/
 
 /**
  * returns a boolean of whether a given direction from a point will result in a trap
