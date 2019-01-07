@@ -38,6 +38,9 @@ boardState.parseSnakes = (gameState) => {
             let isEdible = boardState.isEdible(gameState.you.body[0], segment)
             formattedSegment.meal = isEdible
             formattedSegment.isCollision = !isEdible
+            if(gameState.you.body.length - snake.body.length < 2) {
+              formattedSegment.risk = true
+            }
           } 
         }
 
